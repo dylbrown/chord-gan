@@ -13,23 +13,33 @@ class Chord {
         this.chordTones = builder.chordTones;
     }
 
-    public class Builder implements org.apache.commons.lang3.builder.Builder<Chord> {
+    @SuppressWarnings("UnusedReturnValue")
+    public static class Builder implements org.apache.commons.lang3.builder.Builder<Chord> {
         private Interval intervalBelowPrevious = Interval.P1;
         private Interval bassAboveChordRoot = Interval.P1;
         private boolean[] chordTones = new boolean[12];
-        public Builder() {
+        Builder() {
             Arrays.fill(chordTones, false);
         }
-        public Builder intervalBelowPrevious(Interval i) {
+        Builder intervalBelowPrevious(Interval i) {
             intervalBelowPrevious = i;
             return this;
         }
-        public Builder bassAboveChordRoot(Interval i) {
+        Builder bassAboveChordRoot(Interval i) {
             bassAboveChordRoot = i;
             return this;
         }
-        public Builder addChordTone(Interval i) {
-            chordTones[i.ordinal()] = true;
+        Builder addChordTones(Interval... intervals) {
+            for (Interval i : intervals) {
+                chordTones[i.ordinal()] = true;
+            }
+            return this;
+        }
+
+        Builder removeChordTones(Interval... intervals) {
+            for (Interval i : intervals) {
+                chordTones[i.ordinal()] = false;
+            }
             return this;
         }
         @Override
