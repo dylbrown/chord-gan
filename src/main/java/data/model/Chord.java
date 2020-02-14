@@ -1,8 +1,9 @@
-package data;
+package data.model;
 
 import java.util.Arrays;
 
-class Chord {
+public class Chord {
+    public static final Chord NO_CHORD = new Chord.Builder().build();
     private Interval intervalBelowPrevious;
     private Interval bassAboveChordRoot;
     private boolean[] chordTones;
@@ -18,25 +19,25 @@ class Chord {
         private Interval intervalBelowPrevious = Interval.P1;
         private Interval bassAboveChordRoot = Interval.P1;
         private boolean[] chordTones = new boolean[12];
-        Builder() {
+        public Builder() {
             Arrays.fill(chordTones, false);
         }
-        Builder intervalBelowPrevious(Interval i) {
+        public Builder intervalBelowPrevious(Interval i) {
             intervalBelowPrevious = i;
             return this;
         }
-        Builder bassAboveChordRoot(Interval i) {
+        public Builder bassAboveChordRoot(Interval i) {
             bassAboveChordRoot = i;
             return this;
         }
-        Builder addChordTones(Interval... intervals) {
+        public Builder addChordTones(Interval... intervals) {
             for (Interval i : intervals) {
                 chordTones[i.ordinal()] = true;
             }
             return this;
         }
 
-        Builder removeChordTones(Interval... intervals) {
+        public Builder removeChordTones(Interval... intervals) {
             for (Interval i : intervals) {
                 chordTones[i.ordinal()] = false;
             }

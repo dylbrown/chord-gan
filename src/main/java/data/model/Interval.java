@@ -1,10 +1,10 @@
-package data;
+package data.model;
 
 public enum Interval {
     P1, m2, M2, m3, M3, P4, TT, P5, m6, M6, m7, M7;
 
     public static Interval getInterval(String previousRoot, String root) {
-        if(previousRoot.equals("") || root.equals("W")) return P1;
+        if(previousRoot == null || root.equals("W")) return P1;
         int downOffset = (getNum(previousRoot) - getNum(root) + 12) % 12;
         for (Interval interval : Interval.values()) {
             if(interval.ordinal() == downOffset) return interval;
