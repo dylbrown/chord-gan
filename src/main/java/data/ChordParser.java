@@ -2,17 +2,16 @@ package data;
 
 import data.model.Chord;
 import data.model.Interval;
-import data.model.Song;
 
 class ChordParser {
     private String previousRoot;
-    void parse(Song.Builder song, String segment) {
-        Chord.Builder builder = new Chord.Builder();
+    Chord parse(String segment) {
+        Chord.Builder builder = new Chord.Builder(segment);
         String root = (segment.length() > 1 && (segment.charAt(1) == '#' || segment.charAt(1) == 'b')) ? segment.substring(0,2) : segment.substring(0,1);
         builder.intervalBelowPrevious(Interval.getInterval(previousRoot, root));
         setQuality(builder, segment.substring(root.length()));
         previousRoot = root;
-        song.push(builder.build());
+        return builder.build();
     }
 
     private void setQuality(Chord.Builder builder, String substring) {
@@ -104,11 +103,17 @@ class ChordParser {
                 builder.addChordTones(Interval.P4);
             }
         }else if(substring.startsWith("/")) {
-            String root = (substring.charAt(2) == '#' || substring.charAt(2) == 'b') ? substring.substring(1,3) : substring.substring(1,2);
+            String root = (substring.length() > 2 &&
+                    (substring.charAt(2) == '#' || substring.charAt(2) == 'b'))
+                    ? substring.substring(1,3) : substring.substring(1,2);
             builder.bassAboveChordRoot(Interval.getInterval(root, previousRoot));
             qualityLength = 1 + root.length();
         }
         if(qualityLength > 0)
             setExtensions(builder, substring.substring(qualityLength));
+    }
+
+    void reset() {
+        previousRoot = null;
     }
 }

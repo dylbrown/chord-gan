@@ -33,18 +33,19 @@ public class IRealParser {
     }
 
     private void createRawSongs() {
-        if(rawSongs.exists()) return;
+        //if(rawSongs.exists()) return;
         //noinspection ResultOfMethodCallIgnored
         rawSongs.mkdir();
         try {
             String s = Files.readString(decoded.toPath()).replace("irealb://", "");
-            for (String song : s.split("==0=0===")) {
+            for (String song : s.split("===")) {
                 if(song.equals("Jazz 1350")) continue;
-                song = unscrambleSong(song);
                 String title = song.split("=", 2)[0].replaceAll("\\W+", "");
                 File file = new File(baseString + "raw-songs/" + title + ".txt");
-                if(file.createNewFile())
+                if(!file.exists() && file.createNewFile()){
+                    song = unscrambleSong(song);
                     Files.writeString(file.toPath(), song);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -54,7 +55,8 @@ public class IRealParser {
     private String unscrambleSong(String songString) {
         String[] split = songString.split("==", 3);
         if(split.length < 3) System.out.println(songString);
-        String body = split[2].replace("1r34LbKcu7", "");
+        String body = split[2].replace("1r34LbKcu7", "")
+                .split("=", 2)[0];
         StringBuilder deobfuscatedBody = new StringBuilder();
         String beginning = split[0] + "==" + split[1] + "==";
         deobfuscatedBody.append(beginning);
@@ -79,9 +81,11 @@ public class IRealParser {
     }
 
     private Song createSong(String songString) {
-        String body = songString.split("==", 3)[2];
+        String body = songString.split("==", 3)[2]
+                .replaceAll("\\([^)]*\\)", "");
 
         Song.Builder song = new Song.Builder();
+        itemParser.reset();
         while(body.length() > 0) {
             body = tryParse(song, body);
         }
@@ -90,10 +94,11 @@ public class IRealParser {
 
     private String tryParse(Song.Builder song, String body) {
         boolean foundMatch = false;
-        for(int i = 1; i < body.length(); i++) {
+        for(int i = 1; i <= body.length(); i++) {
             if(!foundMatch && itemParser.canParse(body.substring(0, i))) foundMatch = true;
-            if(foundMatch && !itemParser.canParse(body.substring(0, i+1))) {
+            if(foundMatch && (i == body.length() || !itemParser.canParse(body.substring(0, i+1)))) {
                 itemParser.parse(song, body.substring(0, i));
+                if(itemParser.isOver()) return "";
                 return body.substring(i);
             }
         }
