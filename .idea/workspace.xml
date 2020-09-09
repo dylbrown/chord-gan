@@ -1,0 +1,767 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2f490b9c-76a4-4e45-ae46-0784662d017d" name="Default Changelist" comment="Full-Featured Song Parsing&#10;- Added support for all iReal features to the parser&#10;- Fixed bug where slash chords were not being correctly caught&#10;- added source string to Chord for reference&#10;- added time signature to Song for later reference&#10;- removed coupling between ChordParser and Song&#10;&#10;Debugged IRealParser:&#10;- fixed a bug where songs with custom player tempo/speed didn't split correctly&#10;- fixed a bug where the ItemParser wasn't being reset between songs&#10;- Added an early exit clause for when a song hits a Z and has no more endings">
+      <change afterPath="$PROJECT_DIR$/src/main/java/data/CSVExporter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/network/LastStepPreProc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/data/ChordParserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/data/ChordParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data/ChordParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/data/IRealParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data/IRealParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/data/ItemParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data/ItemParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/data/model/Chord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data/model/Chord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/data/model/Interval.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data/model/Interval.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/data/model/Song.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data/model/Song.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/network/Discriminator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/network/Discriminator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/network/GAN.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/network/GAN.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/network/Generator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/network/Generator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/ChordGAN.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/ChordGAN.java" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path="$PROJECT_DIR$/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="675">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ui/ChordGAN.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="435">
+              <caret line="118" selection-start-line="118" selection-end-line="118" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/network/Generator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="609">
+              <caret line="25" column="26" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/network/Discriminator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1044">
+              <caret line="52" column="5" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/network/GAN.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1082">
+              <caret line="80" selection-start-line="80" selection-end-line="80" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#3382#3383#0" expanded="true" />
+                <element signature="e#3431#3432#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="JUnit5 Test Class" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>always an</find>
+      <find>h</find>
+      <find>kiss to bu</find>
+      <find>x</find>
+      <find>ablu</find>
+      <find>Harlequin.csv</find>
+      <find>13NU</find>
+      <find>13</find>
+      <find>30l</find>
+      <find>30</find>
+    </findStrings>
+    <dirStrings>
+      <dir>C:\Users\dylan\OneDrive\Programming\GitHub\ChordGAN\src\main\resources\csv-songs</dir>
+    </dirStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="dylbrown &lt;dylanmb193@gmail.com&gt;" />
+      </list>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/main/java/ChordGAN.java" />
+        <option value="$PROJECT_DIR$/src/main/java/GAN.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Discriminator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Generator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/network/GeneratorTrainer.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/jazz1350.txt" />
+        <option value="$PROJECT_DIR$/src/main/java/data/Interval.java" />
+        <option value="$PROJECT_DIR$/src/main/java/data/Chord.java" />
+        <option value="$PROJECT_DIR$/src/main/java/data/Song.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/jazz1350_decoded.txt" />
+        <option value="$PROJECT_DIR$/src/main/java/data/model/Song.java" />
+        <option value="$PROJECT_DIR$/src/main/java/data/model/Chord.java" />
+        <option value="$PROJECT_DIR$/src/main/java/data/model/Interval.java" />
+        <option value="$PROJECT_DIR$/src/test/java/data/ChordParserTest.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/raw-songs/Harlequin.txt" />
+        <option value="$PROJECT_DIR$/src/main/java/data/ItemParser.java" />
+        <option value="$PROJECT_DIR$/src/main/java/data/ChordParser.java" />
+        <option value="$PROJECT_DIR$/src/main/java/network/LastStepPreProc.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/data/CSVExporter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/data/IRealParser.java" />
+        <option value="$PROJECT_DIR$/src/main/java/network/Generator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ui/ChordGAN.java" />
+        <option value="$PROJECT_DIR$/src/main/java/network/GAN.java" />
+        <option value="$PROJECT_DIR$/src/main/java/network/Discriminator.java" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectConfigurationFiles">
+    <option name="files">
+      <list>
+        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="1314" />
+    <option name="y" value="111" />
+    <option name="width" value="1618" />
+    <option name="height" value="882" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="ChordGAN" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="chord-gan" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+            </path>
+            <path>
+              <item name="ChordGAN" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="chord-gan" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="ChordGAN" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="chord-gan" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="ChordGAN" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="chord-gan" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="ChordGAN" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="chord-gan" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="resources" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="ChordGAN" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="chord-gan" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="test" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="ChordGAN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ChordGAN" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ChordGAN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ChordGAN" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ChordGAN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ChordGAN" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ChordGAN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ChordGAN" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ChordGAN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ChordGAN" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ChordGAN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ChordGAN" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="network" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ChordGAN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ChordGAN" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="ui" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ChordGAN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ChordGAN" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ChordGAN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ChordGAN" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ChordGAN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ChordGAN" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ChordGAN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ChordGAN" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../clue-solver" />
+    <property name="project.structure.last.edited" value="Problems" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="data" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="data" />
+      <recent name="" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.ChordGAN">
+    <configuration name="ChordGAN" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ui.ChordGAN" />
+      <module name="chord-gan" />
+      <option name="PROGRAM_PARAMETERS" value="-Dorg.deeplearning4j.ui.port=9001" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="IRealParser" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data.IRealParser" />
+      <module name="chord-gan" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="data.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ChordParserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="chord-gan" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="data.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="data" />
+      <option name="MAIN_CLASS_NAME" value="data.ChordParserTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.ChordGAN" />
+      <item itemvalue="Application.IRealParser" />
+      <item itemvalue="JUnit.ChordParserTest" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ChordGAN" />
+        <item itemvalue="Application.IRealParser" />
+        <item itemvalue="JUnit.ChordParserTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2f490b9c-76a4-4e45-ae46-0784662d017d" name="Default Changelist" comment="" />
+      <created>1578699837639</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1578699837639</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Classes and Unscramble&#10;- Added Song, Chord, Interval classes&#10;- Added unscramble method to unscramble flipped letters">
+      <created>1580673214168</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1580673214168</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Basic Chord Parsing&#10;- IRealParser now correctly unscrambles the string, and does so before storing raw files&#10;- IRealParser now pulls all the chords from the song in sequential order, ignoring bars">
+      <created>1580808020829</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1580808020829</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Refactored Parsing&#10;- Created ChordParser to parse individual chords&#10;- Created ItemParser to parse indvidual items&#10;  - Uses maps to dispatch to correct handler fn&#10;- Changed song to have a Builder">
+      <created>1581639054236</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1581639054236</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="ChordParserTest - 2020.02.17 at 23h 12m 50s.xml">
+      <configuration name="ChordParserTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ChordParserTest - 2020.02.17 at 23h 14m 32s.xml">
+      <configuration name="ChordParserTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ChordParserTest - 2020.02.17 at 23h 15m 02s.xml">
+      <configuration name="ChordParserTest" configurationId="JUnit" />
+    </history-entry>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-12" y="-12" width="2584" height="1464" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24570313" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3295393" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32899728" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3197832" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Problems" order="7" weight="0.3295393" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.3295393" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5005348" side_tool="true" weight="0.32899728" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49946523" weight="0.32899728" />
+      <window_info anchor="bottom" id="Run with VisualVM" order="12" />
+      <window_info anchor="bottom" id="Debug with VisualVM" order="13" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Capture Analysis" order="3" />
+      <window_info anchor="right" id="Maven" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+    </layout>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Classes and Unscramble&#10;- Added Song, Chord, Interval classes&#10;- Added unscramble method to unscramble flipped letters" />
+    <MESSAGE value="Basic Chord Parsing&#10;- IRealParser now correctly unscrambles the string&#10;- IRealParser now pulls all the chords from the song in sequential order, ignoring bars" />
+    <MESSAGE value="Basic Chord Parsing&#10;- IRealParser now correctly unscrambles the string, and does so before storing raw files&#10;- IRealParser now pulls all the chords from the song in sequential order, ignoring bars" />
+    <MESSAGE value="Refactored Parsing&#10;- Created ChordParser to parse individual chords&#10;- Created ItemParser to parse indvidual items&#10;  - Uses maps to dispatch to correct handler fn&#10;- Changed song to have a Builder" />
+    <MESSAGE value="Full-Featured Song Parsing&#10;- Added support for all iReal features to the parser&#10;- Fixed bug where slash chords were not being correctly caught&#10;- added source string to Chord for reference&#10;- added time signature to Song for later reference&#10;- removed coupling between ChordParser and Song&#10;- Debugged IRealParser:&#10;- fixed a bug where songs with custom player tempo/speed didn't split correctly&#10;- fixed a bug where the ItemParser wasn't being reset between songs&#10;- Added an early exit clause for when a song hits a Z and has no more endings&#10;-" />
+    <MESSAGE value="Full-Featured Song Parsing&#10;- Added support for all iReal features to the parser&#10;- Fixed bug where slash chords were not being correctly caught&#10;- added source string to Chord for reference&#10;- added time signature to Song for later reference&#10;- removed coupling between ChordParser and Song&#10;&#10;Debugged IRealParser:&#10;- fixed a bug where songs with custom player tempo/speed didn't split correctly&#10;- fixed a bug where the ItemParser wasn't being reset between songs&#10;- Added an early exit clause for when a song hits a Z and has no more endings" />
+    <option name="LAST_COMMIT_MESSAGE" value="Full-Featured Song Parsing&#10;- Added support for all iReal features to the parser&#10;- Fixed bug where slash chords were not being correctly caught&#10;- added source string to Chord for reference&#10;- added time signature to Song for later reference&#10;- removed coupling between ChordParser and Song&#10;&#10;Debugged IRealParser:&#10;- fixed a bug where songs with custom player tempo/speed didn't split correctly&#10;- fixed a bug where the ItemParser wasn't being reset between songs&#10;- Added an early exit clause for when a song hits a Z and has no more endings" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/data/IRealParser.java</url>
+          <line>82</line>
+          <properties />
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/data/IRealParser.java</url>
+          <line>100</line>
+          <properties />
+          <option name="timeStamp" value="65" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="e.cause" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/csv-songs/128/A+Little+Tear.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1332" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/results/199.csv" />
+    <entry file="jar://$MAVEN_REPOSITORY$/org/nd4j/nd4j-api/1.0.0-beta6/nd4j-api-1.0.0-beta6.jar!/org/nd4j/linalg/dataset/api/iterator/DataSetIterator.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="588">
+          <caret line="24" column="9" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/stats.txt" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/results/9.csv" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/results/49.csv" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/results/74.csv" />
+    <entry file="jar://$MAVEN_REPOSITORY$/org/deeplearning4j/deeplearning4j-nn/1.0.0-beta6/deeplearning4j-nn-1.0.0-beta6.jar!/org/deeplearning4j/nn/conf/layers/Layer.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="272" column="17" selection-start-line="272" selection-start-column="17" selection-end-line="272" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/deeplearning4j/deeplearning4j-nn/1.0.0-beta6/deeplearning4j-nn-1.0.0-beta6.jar!/org/deeplearning4j/nn/conf/layers/DropoutLayer.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="85" column="11" selection-start-line="85" selection-start-column="11" selection-end-line="85" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/deeplearning4j/deeplearning4j-vertx/1.0.0-beta6/deeplearning4j-vertx-1.0.0-beta6.jar!/org/deeplearning4j/ui/api/UIServer.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="34" column="22" lean-forward="true" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1019">
+          <caret line="64" column="21" selection-start-line="64" selection-start-column="21" selection-end-line="64" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/deeplearning4j/deeplearning4j-nn/1.0.0-beta6/deeplearning4j-nn-1.0.0-beta6.jar!/org/deeplearning4j/nn/conf/preprocessor/RnnToFeedForwardPreProcessor.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-35">
+          <caret line="92" column="11" selection-start-line="92" selection-start-column="11" selection-end-line="92" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/results/30.csv" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/network/GeneratorTrainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="797">
+          <caret line="53" column="12" selection-start-line="53" selection-start-column="12" selection-end-line="53" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2026#2027#0" expanded="true" />
+            <element signature="e#2055#2056#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/results/33.csv" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/results/41.csv" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/results/40.csv" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/results/38.csv" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/results/36.csv" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/results/32.csv" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/results/46.csv" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/results/15.csv" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/results/12.csv" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/results/24.csv" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/results/26.csv" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/results/19.csv" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/results/17.csv" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/csv-songs/128/A+Night+In+Tunisia.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/csv-songs/128/Angel+Eyes.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/csv-songs/128/All+Of+Me.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/csv-songs/128/Alfie%27s+Theme.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/results/22.csv" />
+    <entry file="jar://C:/Program Files/AdoptOpenJDK/jdk-11.0.6.10-hotspot/lib/src.zip!/java.base/java/lang/Enum.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/results/99.csv" />
+    <entry file="jar://$MAVEN_REPOSITORY$/org/nd4j/nd4j-api/1.0.0-beta6/nd4j-api-1.0.0-beta6.jar!/org/nd4j/linalg/dataset/api/preprocessor/NormalizerMinMaxScaler.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="21" column="11" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="11" />
+          <folding>
+            <element signature="e#757#758#0" expanded="true" />
+            <element signature="e#818#819#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/data/CSVExporter.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/csv-songs/128/A+Kiss+To+Build+A+Dream+On.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1299" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/results/25_1.csv" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/results/25_0.csv" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/data/IRealParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1500">
+          <caret line="89" column="10" selection-start-line="89" selection-start-column="10" selection-end-line="89" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/results/8_0.csv" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/results/0_3.csv" />
+    <entry file="jar://$MAVEN_REPOSITORY$/org/nd4j/nd4j-api/1.0.0-beta6/nd4j-api-1.0.0-beta6.jar!/org/nd4j/linalg/dataset/DataSet.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1161">
+          <caret line="872" column="16" selection-start-line="872" selection-start-column="16" selection-end-line="872" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/results/16_3.csv" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/disc.txt" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/results/24_3.csv" />
+    <entry file="jar://$MAVEN_REPOSITORY$/org/deeplearning4j/deeplearning4j-nn/1.0.0-beta6/deeplearning4j-nn-1.0.0-beta6.jar!/org/deeplearning4j/nn/multilayer/MultiLayerNetwork.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1161">
+          <caret line="1952" column="16" selection-start-line="1952" selection-start-column="16" selection-end-line="1952" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ui/ChordGAN.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="118" selection-start-line="118" selection-end-line="118" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/network/Generator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="609">
+          <caret line="25" column="26" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/network/Discriminator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1044">
+          <caret line="52" column="5" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/network/GAN.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1082">
+          <caret line="80" selection-start-line="80" selection-end-line="80" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3382#3383#0" expanded="true" />
+            <element signature="e#3431#3432#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>chord-gan</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: com.clearspring.analytics:stream:2.7.0</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

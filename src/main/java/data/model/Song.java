@@ -6,11 +6,13 @@ import java.util.Collections;
 import java.util.List;
 
 public class Song {
+    private String title;
     private final String timeSignature;
     private List<Chord> progression;
     private Song(Song.Builder builder) {
         this.progression = builder.progression;
         this.timeSignature = builder.timeSignature;
+        this.title = builder.title;
     }
     public List<Chord> getProgression() {
         return Collections.unmodifiableList(progression);
@@ -20,9 +22,14 @@ public class Song {
         return timeSignature;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
     public static class Builder implements org.apache.commons.lang3.builder.Builder<Song> {
         private List<Chord> progression = new ArrayList<>();
         private String timeSignature = "44";
+        private String title;
 
         public void push(Chord... c) {
             push(Arrays.asList(c));
@@ -42,6 +49,10 @@ public class Song {
 
         public void setTimeSignature(String time) {
             this.timeSignature = time;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
         }
     }
 }

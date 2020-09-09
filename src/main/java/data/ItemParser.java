@@ -15,6 +15,7 @@ class ItemParser {
             new AbstractMap.SimpleImmutableEntry<>("x", this::repeatPrevious),
             new AbstractMap.SimpleImmutableEntry<>("Kcl", this::repeatPrevious),
             new AbstractMap.SimpleImmutableEntry<>("r|XyQ", this::repeatTwo),
+            new AbstractMap.SimpleImmutableEntry<>("r| ", this::repeatTwo),
             new AbstractMap.SimpleImmutableEntry<>("n", this::endBar),
             new AbstractMap.SimpleImmutableEntry<>("p", (b,s)->{}),
             new AbstractMap.SimpleImmutableEntry<>("U", (b,s)->{}),
@@ -40,7 +41,7 @@ class ItemParser {
             new AbstractMap.SimpleImmutableEntry<>("Y+", (b,s)->{}),
             new AbstractMap.SimpleImmutableEntry<>("N(\\d)", this::setRepeatedSectionEnd),
             new AbstractMap.SimpleImmutableEntry<>(
-                    "[A-GW]{1}[\\+\\-\\^\\dhob#suadlt]*(\\/[A-G]?[#b]?)?", this::parseChord)
+                    "[A-GW]{1}[\\*\\+\\-\\^\\dhob#suadlt]*(\\/[A-G]?[#b]?)?", this::parseChord)
     );
     private String lastRegex = null;
     boolean canParse(String segment) {
@@ -142,7 +143,7 @@ class ItemParser {
                 builder.push(builder.getProgression().get(i));
             }
             dcCoda = dsCoda = false;
-        } else if(segment.equals("Z")) isOver = true;
+        } else if(segment.equals("Z") && !skipSection) isOver = true;
         endBar(builder, "");
 
     }

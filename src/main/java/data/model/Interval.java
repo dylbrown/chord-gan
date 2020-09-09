@@ -3,9 +3,9 @@ package data.model;
 public enum Interval {
     P1, m2, M2, m3, M3, P4, TT, P5, m6, M6, m7, M7;
 
-    public static Interval getInterval(String previousRoot, String root) {
-        if(previousRoot == null || root.equals("W")) return P1;
-        int downOffset = (getNum(previousRoot) - getNum(root) + 12) % 12;
+    public static Interval getInterval(String from, String to) {
+        if(from == null || to == null || to.equals("W")) return P1;
+        int downOffset = (getNum(from) - getNum(to) + 12) % 12;
         for (Interval interval : Interval.values()) {
             if(interval.ordinal() == downOffset) return interval;
         }

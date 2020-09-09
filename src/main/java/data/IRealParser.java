@@ -5,6 +5,7 @@ import data.model.Song;
 import java.io.File;
 import java.io.IOException;
 import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Objects;
@@ -15,6 +16,7 @@ public class IRealParser {
     private static final File decoded = new File(baseString+"jazz1350_decoded.txt");
     private static final File rawSongs = new File(baseString + "raw-songs/");
     private final ItemParser itemParser = new ItemParser();
+    private final CSVExporter csvExporter = new CSVExporter(baseString+"csv-songs/");
     public static void main(String[] args) {
         IRealParser parser = new IRealParser();
         parser.decode();
@@ -40,7 +42,7 @@ public class IRealParser {
             String s = Files.readString(decoded.toPath()).replace("irealb://", "");
             for (String song : s.split("===")) {
                 if(song.equals("Jazz 1350")) continue;
-                String title = song.split("=", 2)[0].replaceAll("\\W+", "");
+                String title = URLEncoder.encode(song.split("=", 2)[0], StandardCharsets.UTF_8);
                 File file = new File(baseString + "raw-songs/" + title + ".txt");
                 if(!file.exists() && file.createNewFile()){
                     song = unscrambleSong(song);
@@ -73,6 +75,7 @@ public class IRealParser {
             try {
                 String songString = Files.readString(rawSongFile.toPath());
                 Song song = createSong(songString);
+                csvExporter.exportCSV(song);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -85,6 +88,10 @@ public class IRealParser {
                 .replaceAll("\\([^)]*\\)", "");
 
         Song.Builder song = new Song.Builder();
+        String title = songString.split("=", 2)[0];
+        song.setTitle(title);
+//        if(title.startsWith("Someday (You") && title.length() > "Someday (You".length())
+//            System.out.println("Testing");
         itemParser.reset();
         while(body.length() > 0) {
             body = tryParse(song, body);

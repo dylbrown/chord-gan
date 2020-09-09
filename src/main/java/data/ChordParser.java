@@ -9,8 +9,8 @@ class ChordParser {
         Chord.Builder builder = new Chord.Builder(segment);
         String root = (segment.length() > 1 && (segment.charAt(1) == '#' || segment.charAt(1) == 'b')) ? segment.substring(0,2) : segment.substring(0,1);
         builder.intervalBelowPrevious(Interval.getInterval(previousRoot, root));
-        setQuality(builder, segment.substring(root.length()));
         previousRoot = root;
+        setQuality(builder, segment.substring(root.length()));
         return builder.build();
     }
 
@@ -74,7 +74,9 @@ class ChordParser {
     private void setExtensions(Chord.Builder builder, String substring) {
         if(substring.length() == 0) return;
         int qualityLength = 0;
-        if(substring.startsWith("b")) {
+        if(substring.startsWith("*")) {
+            qualityLength = 1;
+        }if(substring.startsWith("b")) {
             if(substring.startsWith("9", 1)) {
                 builder.addChordTones(Interval.m2);
                 qualityLength = 2;
